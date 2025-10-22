@@ -22,48 +22,18 @@
         Name: "{{item}}"
     loop: "{{instances}}"
     register: ec2_output
-  - name: print ec2_output
+  # - name: print ec2_output
+  #   ansible.builtin.debug:
+  #     msg: "{{ec2_output}}"
+  
+  - name: print public_ip
     ansible.builtin.debug:
-      msg: "{{ec2_output}}"
+      msg: "{{ item.instance[0].public_ip_address}}"
+    loop: "{{ec2_output.results}}"
+
+  - name: print private_ip
+    ansible.builtin.debug:
+      msg: "{{item.instance[0].private_ip_address}}"
+    loop: "{{ec2_output.results}}"
 
 
-
-# - name: create ec2 and r53
-#   hosts: local
-#   connection: local
-#   vars:
-#     ami_id: ami-09c813fb71547fc4f
-#     sg_id: sg-09d07490acc07ecdc # replace with your SG ID
-#     zone_id: "Z09862333DG9EIMMVCYEW" # replace with your ID
-#     domain_name: "userbolla.store"
-#     # we can pass instances through command line using -e
-#     instances: 
-#     - mongodb
-#     # - redis
-#     # - mysql
-#     # - rabbitmq
-#   tasks:
-#   - name: create ec2 instance
-#     amazon.aws.ec2_instance:
-#       name: "{{ item }}"
-#       instance_type: t3.micro
-#       security_group: "{{ sg_id }}"
-#       image_id: "{{ ami_id }}"
-#       tags:
-#         Name: "{{ item }}"
-#     loop: "{{ instances }}"
-#     register: ec2_output
-
-#   - name: print the ec2_output
-#     ansible.builtin.debug:
-#       msg: "{{ ec2_output }}"
-
-  # - name: print public_ip
-  #   ansible.builtin.debug: 
-  #     msg: "{{ item.instances[0].public_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
-
-  # - name: print private_ip
-  #   ansible.builtin.debug: 
-  #     msg: "{{ item.instances[0].private_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
