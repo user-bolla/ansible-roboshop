@@ -23,18 +23,26 @@
     loop: "{{instances}}"
     register: ec2_output
 
-  - name: print ec2_output
-    ansible.builtin.debug:
-      msg: "{{ec2_output}}"
+  # - name: print ec2_output
+  #   ansible.builtin.debug:
+  #     msg: "{{ec2_output}}"
   
+  # - name: print public_ip
+  #   ansible.builtin.debug:
+  #     msg: "{{ item.instance[0].public_ip_address}}"
+  #   loop: "{{ec2_output.results}}"
+
+  # - name: print private_ip
+  #   ansible.builtin.debug:
+  #     msg: "{{item.instance[0].private_ip_address}}"
+  #   loop: "{{ec2_output.results}}"
+
   - name: print public_ip
-    ansible.builtin.debug:
-      msg: "{{ item.instance[0].public_ip_address}}"
-    loop: "{{ec2_output.results}}"
+    ansible.builtin.debug: 
+      msg: "{{ item.instances[0].public_ip_address }}"
+    loop: "{{ ec2_output.results }}"
 
   - name: print private_ip
-    ansible.builtin.debug:
-      msg: "{{item.instance[0].private_ip_address}}"
-    loop: "{{ec2_output.results}}"
-
-
+    ansible.builtin.debug: 
+      msg: "{{ item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
