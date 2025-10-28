@@ -6,11 +6,12 @@
     sg_id: sg-09d07490acc07ecdc
     zone_id: "Z09862333DG9EIMMVCYEW"
     domain_name: "userbolla.store"
-    instances: 
-    - mongodb
-    - redis
-    - mysql
-    - rabbitmq
+    # we can pass instances through command line using -e
+    # instances: 
+    # - mongodb
+    # - redis
+    # - mysql
+    # - rabbitmq
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
