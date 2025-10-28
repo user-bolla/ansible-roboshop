@@ -27,10 +27,10 @@
   #     path: /app
   #     state: absent
 
-  # - name: Create app directory
-  #   ansible.builtin.file:
-  #     state: directory
-  #     path: /app
+  - name: Create app directory
+    ansible.builtin.file:
+      state: directory
+      path: /app
 
   # - name: Delete catalogue file
   #   ansible.builtin.file:
@@ -46,4 +46,4 @@
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
-      #remote_src: yes
+      remote_src: yes
