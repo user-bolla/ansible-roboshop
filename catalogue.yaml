@@ -1,6 +1,6 @@
 - name: setup catalogue server
   hosts: catalogue
-  become:yes
+  become: yes
 
   tasks:
   - name: disable deafult nodejs
