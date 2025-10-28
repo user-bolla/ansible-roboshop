@@ -45,7 +45,7 @@
       dest: /etc/nginx/nginx.conf
 
   - name: restart nginx
-    ansible.builtin.server:
+    ansible.builtin.service:
       name: nginx
       state: restarted  #restarted if you have already started earlier
       enabled: yes
