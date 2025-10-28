@@ -1,4 +1,4 @@
-- nmae: setup mongodb server
+- name: setup mongodb server
   hosts: mongodb
   become: yes
   tasks:
@@ -18,7 +18,7 @@
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-      
+
   - name: ansible start and enable service
     ansible.builtin.service:
       name: mongod
